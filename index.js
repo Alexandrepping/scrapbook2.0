@@ -30,7 +30,7 @@ function addNewScrap() {
 
 function createScrapCard(title, message) {
   return `
-  <div class="message-cards card text-white bg-dark m-2">
+    <div class="message-cards card text-white bg-dark m-2">
               <div class="card-header font-weight-bold">${title}</div>
               <div class="card-body">
                 <p class="card-text">
@@ -39,7 +39,13 @@ function createScrapCard(title, message) {
               </div>
               <div class="w100 d-flex justify-content-end pr-2 pb-2">
                 <button class="btn btn-danger mr-1">Deletar</button>
-                <button class="btn btn-info">Editar</button>
+                <button
+                  class="btn btn-info"
+                  data-toggle="modal"
+                  data-target="#editModal"
+                >
+                  Editar
+                </button>
               </div>
             </div>
   `;
