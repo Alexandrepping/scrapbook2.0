@@ -52,26 +52,7 @@
           <div
             id="scrapsField"
             class="d-flex flex-wrap justify-content-center mt-5 w-100"
-          >
-            <div class="message-cards card text-white bg-dark m-2">
-              <div class="card-header font-weight-bold">${title}</div>
-              <div class="card-body">
-                <p class="card-text">
-                  ${message}
-                </p>
-              </div>
-              <div class="w100 d-flex justify-content-end pr-2 pb-2">
-                <button class="btn btn-danger mr-1">Deletar</button>
-                <button
-                  class="btn btn-info"
-                  data-toggle="modal"
-                  data-target="#editModal"
-                >
-                  Editar
-                </button>
-              </div>
-            </div>
-          </div>
+          ></div>
 
           <!-- Modal -->
           <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
@@ -97,15 +78,15 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="editmessageTitle"
+                    id="editMessageTitle"
                     placeholder="Digite o título da mensagem"
                   />
 
-                  <label for="editmessageBody" class="font-weight-bold"
+                  <label for="editMessageBody" class="font-weight-bold"
                     >Mensagem:</label
                   >
                   <textarea
-                    id="editmessageBody"
+                    id="editMessageBody"
                     class="form-control"
                     cols="30"
                     rows="5"
@@ -119,7 +100,7 @@
                   >
                     Fechar
                   </button>
-                  <button type="button" class="btn btn-primary">
+                  <button id="saveEdit" type="button" class="btn btn-primary">
                     Salvar
                   </button>
                 </div>
