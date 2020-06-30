@@ -52,11 +52,99 @@
           <div
             id="scrapsField"
             class="d-flex flex-wrap justify-content-center mt-5 w-100"
-          ></div>
+          >
+            <div class="message-cards card text-white bg-dark m-2">
+              <div class="card-header font-weight-bold">${title}</div>
+              <div class="card-body">
+                <p class="card-text">
+                  ${message}
+                </p>
+              </div>
+              <div class="w100 d-flex justify-content-end pr-2 pb-2">
+                <button class="btn btn-danger mr-1">Deletar</button>
+                <button
+                  class="btn btn-info"
+                  data-toggle="modal"
+                  data-target="#editModal"
+                >
+                  Editar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Modal title
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <label for="editmessageTitle" class="font-weight-bold"
+                    >Título:</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editmessageTitle"
+                    placeholder="Digite o título da mensagem"
+                  />
+
+                  <label for="editmessageBody" class="font-weight-bold"
+                    >Mensagem:</label
+                  >
+                  <textarea
+                    id="editmessageBody"
+                    class="form-control"
+                    cols="30"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Fechar
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
 
     <script src="index.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
