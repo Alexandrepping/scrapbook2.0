@@ -63,10 +63,20 @@ function openEditModal(position) {
 
   editTitleInput.value = scraps[position].title;
   editMessageInput.value = scraps[position].message;
+  //btnSaveEdit = document.getElementById("saveEdit");
 
-  btnSaveEdit.setAttribute("onclick", `savechanges(${position})`);
+  btnSaveEdit.setAttribute("onclick", `saveChanges(${position})`);
+  btnExcluir.setAttribute("onclick", `excluiCard(${position})`);
 }
 
-function saveChanges(position) {}
+function saveChanges(position) {
+  title = editTitleInput.value;
+  message = editMessageInput.value;
+
+  scraps[position].title = title;
+  scraps[position].message = message;
+
+  renderScraps(position);
+}
 
 addButton.onclick = addNewScrap;
