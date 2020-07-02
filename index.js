@@ -5,6 +5,7 @@ let editMessageInput = document.getElementById("editMessageBody");
 let addButton = document.getElementById("addButton");
 let scrapsField = document.getElementById("scrapsField");
 let btnSaveEdit = document.getElementById("saveEdit");
+let btnExcluir = document.getElementById("btnDel");
 
 let scraps = [];
 
@@ -46,7 +47,7 @@ function createScrapCard(title, message, position) {
                 </p>
               </div>
               <div class="w100 d-flex justify-content-end pr-2 pb-2">
-                <button class="btn btn-danger mr-1">Deletar</button>
+                <button id ="btnDel" onclick="excluiCard(${position})"class="btn btn-danger mr-1">Deletar</button>
                 <button
                   class="btn btn-info"
                   onclick="openEditModal(${position})"
@@ -63,10 +64,8 @@ function openEditModal(position) {
 
   editTitleInput.value = scraps[position].title;
   editMessageInput.value = scraps[position].message;
-  //btnSaveEdit = document.getElementById("saveEdit");
 
   btnSaveEdit.setAttribute("onclick", `saveChanges(${position})`);
-  btnExcluir.setAttribute("onclick", `excluiCard(${position})`);
 }
 
 function saveChanges(position) {
@@ -77,6 +76,11 @@ function saveChanges(position) {
   scraps[position].message = message;
 
   renderScraps(position);
+}
+
+function excluiCard(position) {
+  scraps.splice(position, 1);
+  renderScraps();
 }
 
 addButton.onclick = addNewScrap;
