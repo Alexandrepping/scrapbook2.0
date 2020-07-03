@@ -47,7 +47,7 @@ function createScrapCard(title, message, position) {
                 </p>
               </div>
               <div class="w100 d-flex justify-content-end pr-2 pb-2">
-                <button id ="btnDel" onclick="excluiCard(${position})"class="btn btn-danger mr-1">Deletar</button>
+                <button id ="btnDel" onclick="deleteCard(${position})"class="btn btn-danger mr-1">Deletar</button>
                 <button
                   class="btn btn-info"
                   onclick="openEditModal(${position})"
@@ -78,9 +78,23 @@ function saveChanges(position) {
   renderScraps(position);
 }
 
-function excluiCard(position) {
+function deleteCard(position) {
   scraps.splice(position, 1);
   renderScraps();
 }
 
+// function checkFields() {
+//   if (titleInput == "") {
+//     alert("Preencha o campo título");
+//     document.getElementById("messageTitle").focus();
+//     return false;
+//   } else if (messageInput == "") {
+//     alert("Preencha o campo mensagem");
+
+//     document.getElementById("messageBody").focus();
+//     return false;
+//   } else {
+//     addButton.onclick = addNewScrap;
+//   }
+// }
 addButton.onclick = addNewScrap;
