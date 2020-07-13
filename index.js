@@ -2,10 +2,9 @@ let titleInput = document.getElementById("messageTitle");
 let editTitleInput = document.getElementById("editMessageTitle");
 let messageInput = document.getElementById("messageBody");
 let editMessageInput = document.getElementById("editMessageBody");
-let addButton = document.getElementById("addButton");
+let addScrapBtn = document.getElementById("addButton");
 let scrapsField = document.getElementById("scrapsField");
 let btnSaveEdit = document.getElementById("saveEdit");
-let btnExcluir = document.getElementById("btnDel");
 
 let scraps = [];
 
@@ -26,36 +25,34 @@ function addNewScrap() {
   let title = titleInput.value;
   let message = messageInput.value;
 
-  if (!messageTitle.value || !messageBody.value) {
-    return `todos os campo precisam estar preechidos`;
-  }
-
   titleInput.value = "";
   messageInput.value = "";
+
   scraps.push({ title, message });
+
+  renderScraps();
+}
+
+function deleteScrap(position) {
+  scraps.splice(position, 1);
 
   renderScraps();
 }
 
 function createScrapCard(title, message, position) {
   return `
-    <div class="message-cards card text-white bg-dark m-2">
-              <div class="card-header font-weight-bold">${title}</div>
-              <div class="card-body">
-                <p class="card-text">
-                  ${message}
-                </p>
-              </div>
-              <div class="w100 d-flex justify-content-end pr-2 pb-2">
-                <button id ="btnDel" onclick="deleteCard(${position})"class="btn btn-danger mr-1">Deletar</button>
-                <button
-                  class="btn btn-info"
-                  onclick="openEditModal(${position})"
-                >
-                  Editar
-                </button>
-              </div>
-            </div>
+  <div class="message-cards card text-white bg-dark m-2 col-3">
+    <div class="card-header font-weight-bold">${title}</div>
+    <div class="card-body">
+      <p class="card-text">
+        ${message}
+      </p>
+    </div>
+    <div class="w-100 d-flex justify-content-end pr-2 pb-2">
+      <button class="btn btn-danger mr-1" onclick="deleteScrap(${position})">Deletar</button>
+      <button class="btn btn-info" onclick="openEditModal(${position})">Editar</button>
+    </div>
+  </div>
   `;
 }
 
@@ -69,32 +66,9 @@ function openEditModal(position) {
 }
 
 function saveChanges(position) {
-  title = editTitleInput.value;
-  message = editMessageInput.value;
-
-  scraps[position].title = title;
-  scraps[position].message = message;
-
-  renderScraps(position);
+  let title = editTitleInput.value;
+  let message = editMessageInput.value;
 }
 
-function deleteCard(position) {
-  scraps.splice(position, 1);
-  renderScraps();
-}
-
-// function checkFields() {
-//   if (titleInput == "") {
-//     alert("Preencha o campo título");
-//     document.getElementById("messageTitle").focus();
-//     return false;
-//   } else if (messageInput == "") {
-//     alert("Preencha o campo mensagem");
-
-//     document.getElementById("messageBody").focus();
-//     return false;
-//   } else {
-//     addButton.onclick = addNewScrap;
-//   }
-// }
-addButton.onclick = addNewScrap;
+renderScraps();
+addScrapBtn.onclick = addNewScrap;
