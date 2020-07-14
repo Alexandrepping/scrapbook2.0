@@ -10,25 +10,35 @@ class TaskList {
     this.setAddButtonEvents();
   }
 
+  generateScrapId() {
+    return this.scraps.length + 1;
+  }
+
   setAddButtonEvents() {
     this.addButton.onclick = () => this.addNewScrap();
   }
 
   setButtonEvents() {
-    console.log(document.querySelectorAll(".delete-button"));
+    console.log(
+      document.querySelectorAll(".delete-button").forEach((item) => {
+        item.onclick = (event) => this.deleteScraps(event);
+      })
+    );
   }
 
   renderScraps() {
     this.scrapsField.innerHTML = "";
 
     for (const scrap of this.scraps) {
-      let position = scraps.indexOf(scrap);
-      this.scrapsField.innerHTML += this.createScrapCard(
-        scrap.title,
-        scrap.message,
-        position
-      );
+      this.generatescrap(scrap.id, scrap.title, scrap.message);
     }
+    this.setButtonEvents();
+  }
+  generateScrap(id, title, message) {
+    const cardHtml = this.createScrapCard(id, title, message);
+
+    this.insertHtml(cardHtml);
+    this.setButtonEvents();
   }
 
   addNewScrap() {
@@ -38,20 +48,31 @@ class TaskList {
     this.titleInput.value = "";
     this.messageInput.value = "";
 
-    this.scraps.push({ title, message });
+    const id = this.generateScrapId();
+    this.scraps.push({ id, title, message });
 
+    this.generateScrap(id, title, message);
     this.renderScraps();
   }
 
-  deleteScrap(position) {
-    this.scraps.slice(position, 1);
+  deleteScraps(event) {
+    event.path[2].remove();
 
-    this.renderScraps();
+    const scrapId = event.path[2].getAttribute("id-scrap");
+
+    const scrapIndex = this.scraps.findIndex((scrap) => {
+      return scrap.id == scrapId;
+    });
+    this.scraps.splice(scrapIndex, 1);
   }
 
-  createScrapCard(title, message) {
+  insertHtml(html) {
+    this.scrapsField.innerHTML += html;
+  }
+
+  createScrapCard(id, title, message) {
     return `
-      <div class="message-cards card text-white bg-dark m-2 col-3">
+      <div class="message-cards card text-white bg-dark m-2 col-3" id-scrap=${id}>
         <div class="card-header font-weight-bold">${title}</div>
         <div class="card-body">
           <p class="card-text">
