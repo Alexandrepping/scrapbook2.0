@@ -78,17 +78,19 @@ class TaskList {
       return scrap.id == scrapId;
     });
     this.editTitleInput.value = this.scraps[scrapIndex].title;
-    this.editMessageInput.value = this.scraps[scrapIndex].message; // btnSaveEdit.setAttribute("onclick", `saveChanges(${position})`);
+    this.editMessageInput.value = this.scraps[scrapIndex].message;
+
+    this.btnSaveEdit.onclick = () => this.saveChanges(scrapIndex);
   }
 
-  saveChanges(position) {
-    let title = editTitleInput.value;
-    let message = editMessageInput.value;
-    scraps[position] = {
+  saveChanges(scrapIndex) {
+    let title = this.editTitleInput.value;
+    let message = this.editMessageInput.value;
+    this.scraps[scrapIndex] = {
       title,
       message
     };
-    renderScraps();
+    this.renderScraps();
     $("#editModal").modal("hide");
   }
 

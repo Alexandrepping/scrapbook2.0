@@ -90,15 +90,15 @@ class TaskList {
     this.editTitleInput.value = this.scraps[scrapIndex].title;
     this.editMessageInput.value = this.scraps[scrapIndex].message;
 
-    // btnSaveEdit.setAttribute("onclick", `saveChanges(${position})`);
+    this.btnSaveEdit.onclick = () => this.saveChanges(scrapIndex);
   }
 
-  saveChanges(position) {
-    let title = editTitleInput.value;
-    let message = editMessageInput.value;
+  saveChanges(scrapIndex) {
+    let title = this.editTitleInput.value;
+    let message = this.editMessageInput.value;
 
-    scraps[position] = { title, message };
-    renderScraps();
+    this.scraps[scrapIndex] = { title, message };
+    this.renderScraps();
     $("#editModal").modal("hide");
   }
 
